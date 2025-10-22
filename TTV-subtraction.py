@@ -131,7 +131,7 @@ while True:
     vmin, vmax = -300, 300
 
     # Plot 1: Thickness Difference (shown interactively)
-    plt.figure(figsize=(7, 7))
+    plt.figure(figsize=(10,10))
     im = plt.imshow(difference, cmap='RdBu_r', vmin=vmin, vmax=vmax,
                     extent=[x_mm[0], x_mm[-1], y_mm[-1], y_mm[0]])
     plt.title(f'Thickness Difference\nRange: {stats["range"]:.2f} nm (mean adjusted by {mean_diff:.3f} nm)\ndx={current_shift_x:.2f}, dy={current_shift_y:.2f} pixels')
@@ -145,7 +145,7 @@ while True:
     plt.close()
 
     # Plot 2: Valid Subtraction Region (saved only)
-    plt.figure(figsize=(7, 7))
+    plt.figure(figsize=(10,10))
     plt.imshow(valid_mask, cmap='gray', extent=[x_mm[0], x_mm[-1], y_mm[-1], y_mm[0]])
     plt.title('Valid Subtraction Region')
     plt.xlabel('X (mm)')
