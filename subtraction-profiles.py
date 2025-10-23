@@ -121,13 +121,14 @@ if len(points) == 2:
     cropped_x = x_mm[x_start:x_end]
     cropped_y = y_mm[y_start:y_end]
     
-    plt.figure(figsize=(10,10))
-    plt.imshow(cropped_map, cmap='RdBu_r', vmin=200, vmax=400,
-               extent=[cropped_x[0], cropped_x[-1], cropped_y[-1], cropped_y[0]])
+    plt.figure(figsize=(12,10))
+    contour_levels = np.linspace(200, 400, 60)  # 10 intervals from 200 to 400 nm
+    cf = plt.contourf(cropped_x, cropped_y, cropped_map, levels=contour_levels, cmap='RdBu_r', vmin=200, vmax=400)
+    plt.contour(cropped_x, cropped_y, cropped_map, levels=contour_levels, colors='black', linewidths=0.5)  # Add black contour lines for clarity
     plt.title(f'Selected Polished Region ({os.path.basename(input_folder)})\nDimensions: {x_dim:.2f}mm x {y_dim:.2f}mm\n X start: {cropped_x[0]:.2f}mm, X end: {cropped_x[-1]:.2f}mm\n Y start: {cropped_y[-1]:.2f}mm, Y end: {cropped_y[0]:.2f}mm')
     plt.xlabel('X (mm)')
     plt.ylabel('Y (mm)')
-    plt.colorbar(label='Difference (nm)')
+    plt.colorbar(cf, label='Difference (nm)', ticks=np.linspace(200, 400, 10))
     plt.savefig(os.path.join(output_folder, 'polished_region_difference.png'))
     plt.show()
 
@@ -160,3 +161,7 @@ if len(points) == 2:
     plt.tight_layout()
     plt.savefig(os.path.join(output_folder, 'mean_line_plots_polished_region.png'))
     plt.show()
+
+
+
+    
