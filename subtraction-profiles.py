@@ -223,8 +223,8 @@ if len(points) == 2:
     plt.tight_layout()
     plt.savefig(os.path.join(new_output_folder, 'y_profiles_polished_region.png'))
     plt.close()
-    
-        # Combined figure: Polished region map + x_profiles + y_profiles side by side
+
+    # Combined figure: Polished region map + x_profiles + y_profiles side by side
     fig = plt.figure(figsize=(24, 6))  # Wide figure for 3 subplots
     gs = GridSpec(1, 3, figure=fig, width_ratios=[1.4, 1, 1], wspace=0.3, left=0.029, right=0.97)
 
@@ -238,7 +238,7 @@ if len(points) == 2:
     cbar1 = fig.colorbar(im, ax=ax1, shrink=0.8)
     cbar1.set_label('Difference (nm)')
 
-    # Subplot 2: Thickness profiles at four x positions (along y)
+    # Subplot 2: Thickness profiles at six x positions (along y)
     ax2 = fig.add_subplot(gs[0, 1])
     x_indices = np.linspace(0, cropped_map.shape[1]-1, 4, dtype=int) # shape[1] is number of columns (x direction) for cropped_map; using linspace to generate 4 evenly spaced x points
     for x_idx in x_indices: # loop over the selected x indices
